@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+RUN apt-get update && apt-get install -y git python3-pip
+
+WORKDIR /root
+
+RUN git clone https://github.com/GabrielAlves/Prototipo1.git src
+
+WORKDIR /root/src/backend
+
+ENV SQLALCHEMY_DATABASE_URI 'mysql+mysqlconnector://admin:admin@db:3306/db'
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8000
+
+CMD ["python", "run.py"]
