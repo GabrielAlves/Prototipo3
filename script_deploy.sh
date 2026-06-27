@@ -32,12 +32,16 @@ done
 END=$(date +%s)
 DEPLOY_TIME=$((END-START))
 
+
 cat >> resultado_deploy.txt << EOF
 status=sucesso
 tempo_deploy=$DEPLOY_TIME
 timestamp=$(date)
 --------
 EOF
+
+echo "Executando testes no container backend..."
+docker compose exec -T backend bash -c "PYTHONPATH=/app python -m pytest"
 
 echo "Deploy concluído"
 echo "Tempo de deploy: $DEPLOY_TIME segundos"
