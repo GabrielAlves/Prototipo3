@@ -5,9 +5,6 @@ set -e
 sudo docker compose down -v --rmi all
 sudo docker system prune -f
 
-sudo docker compose down -v --rmi all
-sudo docker system prune -f
-
 START=$(date +%s)
 
 sudo docker compose up -d --build
