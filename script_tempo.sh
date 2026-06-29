@@ -2,12 +2,12 @@
 
 set -e
 
-sudo docker compose down -v --rmi all
-sudo docker system prune -f
+docker compose down -v --rmi all
+docker system prune -f
 
 START=$(date +%s)
 
-sudo docker compose up -d --build
+docker compose up -d --build
 
 echo "Aguardando aplicação ficar disponível..."
 
